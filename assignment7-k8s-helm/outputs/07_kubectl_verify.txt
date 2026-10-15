@@ -1,0 +1,13 @@
+$ kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+myrelease-myapp-fdf85786d-5lcbx   1/1     Running   0          21s
+myrelease-myapp-fdf85786d-kszxj   1/1     Running   0          21s
+
+$ kubectl get deployments
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+myrelease-myapp   2/2     2            2           21s
+
+$ kubectl get services
+NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kubernetes        ClusterIP   10.96.0.1      <none>        443/TCP        2m18s
+myrelease-myapp   NodePort    10.96.239.41   <none>        80:30540/TCP   21s

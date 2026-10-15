@@ -1,0 +1,35 @@
+$ helm list
+NAME     	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
+myrelease	default  	1       	2026-10-14 18:17:38.834474 +0530 IST	deployed	myapp-0.1.0	1.0        
+
+$ helm status myrelease
+NAME: myrelease
+LAST DEPLOYED: Wed Oct 14 18:17:38 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+RESOURCES:
+==> v1/ServiceAccount
+NAME              AGE
+myrelease-myapp   14s
+
+==> v1/Service
+NAME              TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+myrelease-myapp   NodePort   10.96.239.41   <none>        80:30540/TCP   14s
+
+==> v1/Deployment
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+myrelease-myapp   2/2     2            2           14s
+
+==> v1/Pod(related)
+NAME                              READY   STATUS    RESTARTS   AGE
+myrelease-myapp-fdf85786d-5lcbx   1/1     Running   0          14s
+myrelease-myapp-fdf85786d-kszxj   1/1     Running   0          14s
+
+
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services myrelease-myapp)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
